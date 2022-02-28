@@ -12,6 +12,19 @@ let carObject = function (pData, pType, pYear) {
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
+    $.get("/getAllData" , function(data, status){
+        carArray = data;
+
+        // carArray.sort(function(a, b) {
+        //     return (a.priority) - (b.priority);
+        // });
+        // carArray.forEach(function(item, index){
+        //     var li = document.createElement('li');
+        //     whichElement.appendChild(li);
+        //     li.innerHTML=li.innerHTML + ": " + " priority: " + item.priority + " " + item.title + ": " + item.detail;
+        // });
+    });
+
 
     document.getElementById("buttonAdd").addEventListener("click", function () {
         let carNmae = document.getElementById("car").value;
@@ -37,17 +50,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
     $(document).on("pagebeforeshow", "#sort", function (event) {   
         showSortList();
     });
-
-
 });
 
 
 
 function createList() {
-    
     // clear prior data
-
-
     var myul = document.getElementById("myList");
     myul.innerHTML = '';
 
@@ -56,6 +64,7 @@ function createList() {
         li.innerHTML = element.data + ":  " + element.type + "  (" +element.year+")";
         myul.appendChild(li);
     });
+
 };
 
 
