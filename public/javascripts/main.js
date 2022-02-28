@@ -30,6 +30,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let carNmae = document.getElementById("car").value;
         let myCarObj = new carObject(carNmae, selectedType,carYear);
         carArray.push(myCarObj);
+        $.ajax({
+            url : "/AddCar",
+            type: "POST",
+            data: JSON.stringify(myCarObj),
+            contentType: "application/json; charset=utf-8",
+            dataType : "json",
+            success:function (result){
+                console.log(result);
+            }
+        });
         console.log(carArray);
         document.getElementById("car").value = "";
         document.getElementById("year").value = "";
